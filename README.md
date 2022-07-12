@@ -1,3 +1,8 @@
+# Boomi Azure Windows Atom Quickstart ARM Template
+
+## [View Deployment Guide](https://docs.google.com/viewer?url=ttps://github.com/OfficialBoomi/azure-windows-atom-quickstart/files/9095737/Azure.Windows.Atom.Quickstart.-.Deployment.Guide.pdf)
+
+
 All the files under atom/test are used to run the automated testing that is needed when requesting that an offering becomes
 public.  To run the testing do the following (the tests will take a long time to run):
 
