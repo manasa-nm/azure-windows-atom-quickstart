@@ -17,7 +17,7 @@
                 "label": {
                     "password": "Password",
                     "confirmPassword": "Confirm password"
-                },
+                },             
                 "toolTip": {
                     "password": "Admin password for the virtual machine."
                 },
@@ -40,7 +40,10 @@
                         "label": "Virtual machine name",
                         "toolTip": "The name of the virtual machine.",
                         "constraints": {
-                            "required": true
+                            "required": true,
+                            "regex": "^([-\\w\\._\\(\\)]{1,64})$",
+                            "validationMessage": "Virtual machine name must be between 1 and 64 characters long and no special characters are allowed."
+                     
                         }
                     },
                     {
@@ -129,29 +132,41 @@
                             "password": "Password",
                             "confirmPassword": "Confirm password"
                         },
-                        "toolTip": "AtomSphere password."
+                        "options": {
+                            "hideConfirmation": false
+                        },
+                        "toolTip": "AtomSphere password.",
+                        "constraints": {
+                            "required": true      
+                        },
+                        "visible": "[if(equals(steps('atomshpereUserInformation').BoomiAuthenticationType,'Password'),true,false)]"
                     },
                     {
                         "name": "BoomiMFAAPIToken",
                         "type": "Microsoft.Common.PasswordBox",
                         "label": {
-                            "password": "Boomi API Token",
-                            "confirmPassword": "Confirm Boomi MFA Install Token"
+                            "password": "Boomi AtomSphere API Token",
+                            "confirmPassword": "Confirm Boomi AtomSphere API Token"
                         },
                         "toolTip": "Boomi token needed when authentication type is Token",
                         "options": {
-                            "hideConfirmation": true
-                        }
+                            "hideConfirmation": false
+                        },
+                        "constraints": {
+                            "required": true                  
+                        },
+                        "visible": "[if(equals(steps('atomshpereUserInformation').BoomiAuthenticationType,'Token'),true,false)]"
+                        
                     },
                     {
                         "name": "accountId",
                         "type": "Microsoft.Common.TextBox",
                         "label": "AtomSphere account ID",
-                        "toolTip": "The ID of the Dell Boomi account where the Atom will be installed.",
+                        "toolTip": "The ID of the Boomi account where the Atom will be installed.",
                         "constraints": {
                             "required": true,
                             "regex": "^\\w{1,25}-\\w{6}$",
-                            "validationMessage": "Account ID must be between 8 and 32 characters long.  It can be found on the Account Information tab in the Setup page."
+                            "validationMessage": "Account ID is not valid. It can be found on the Account Information tab in the Setup page."
                         }
                     },
                     {
@@ -160,7 +175,9 @@
                         "label": "Atom name",
                         "toolTip": "A name for the Atom that is being installed.",
                         "constraints": {
-                            "required": true
+                            "required": true,
+                            "regex": "^.{1,255}$",
+                            "validationMessage": "Atom name must be between 1 and 255 characters long"
                         }
                     }
                 ]
